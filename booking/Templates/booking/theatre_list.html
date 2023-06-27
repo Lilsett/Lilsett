@@ -1,0 +1,8 @@
+<h1>Theatres</h1>
+<ul>
+  {% for theatre in theatre_list %}
+    <li><a href="{% url 'theatre_detail' theatre.pk %}">{{ theatre.name }}</a></li>
+  {% empty %}
+    <li>No theatres available</li>
+  {% endfor %}
+</ul>

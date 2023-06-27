@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1></h1>
+  <h2></h2>
+  <ul>
+    <li><a href="{% url 'movie_list' %}">Movies</a></li>
+    <li><a href="{% url 'theatre_list' %}">Theatres</a></li>
+    <li><a href="{% url 'show_list' %}">Shows</a></li>
+  </ul>
+  {% endblock %}

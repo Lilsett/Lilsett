@@ -1,0 +1,12 @@
+<h1>{{ show.movie.title }}</h1>
+<h2>Theatre: {{ show.theatre.name }}</h2>
+<p>Start Time: {{ show.start_time }}</p>
+<p>End Time: {{ show.end_time }}</p>
+<p>Price: {{ show.price }}</p>
+
+<h3>Seats:</h3>
+{% for seat in seats %}
+  <p>{{ seat.seat_number }} - {% if seat.is_available %}Available{% else %}Not Available{% endif %}</p>
+{% empty %}
+  <p>No seats available for this show.</p>
+{% endfor %}

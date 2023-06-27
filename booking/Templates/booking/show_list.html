@@ -1,0 +1,8 @@
+<h1>Shows</h1>
+<ul>
+  {% for show in show_list %}
+    <li><a href="{% url 'show_detail' show.pk %}">{{ show.movie.title }}</a> at {{ show.theatre.name }}</li>
+  {% empty %}
+    <li>No shows available</li>
+  {% endfor %}
+</ul>

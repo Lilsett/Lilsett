@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Movie List</h1>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      {% for movie in movie_list %}
+        <div class="col mb-4">
+          <div class="card h-100">
+            <img src="/media/{{ movie.poster.name }}" alt="{{ movie.title }}" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">{{ movie.title }}</h5>
+              <p class="card-text">{{ movie.description }}</p>
+              <ul class="list-unstyled">
+                <li><strong>Release Date:</strong> {{ movie.release_date }}</li>
+                <li><strong>Duration:</strong> {{ movie.duration }} minutes</li>
+                <li><strong>Genre:</strong> {{ movie.genre }}</li>
+              </ul>
+              <a href="{% url 'movie_detail' movie.pk %}" class="btn btn-primary">Book Now</a>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <p>No movies available.</p>
+      {% endfor %}
+    </div>
+  </div>
+  
+  <script>
+    // Script to display movie details as a message when the "Book Now" button is clicked
+    const bookNowButtons = document.querySelectorAll('.btn-primary');
+    bookNowButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        const movieTitle = button.closest('.card-body').querySelector('.card-title').textContent;
+        const movieDescription = button.closest('.card-body').querySelector('.card-text').textContent;
+        const releaseDate = button.closest('.card-body').querySelectorAll('li')[0].textContent;
+        const duration = button.closest('.card-body').querySelectorAll('li')[1].textContent;
+        const genre = button.closest('.card-body').querySelectorAll('li')[2].textContent;
+        
+        const message = `Movie Details:\nTitle: ${movieTitle}\nDescription: ${movieDescription}\n${releaseDate}\n${duration}\n${genre}`;
+        alert(message);
+      });
+    });
+  </script>
+{% endblock %}
